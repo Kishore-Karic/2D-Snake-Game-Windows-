@@ -12,7 +12,7 @@ public class MultiPlayerUIManager : MonoBehaviour
     [SerializeField] private GameObject speedUI2;
     [SerializeField] private GameObject shieldUI2;
 
-    [SerializeField] private Snake2 snake2;
+    [SerializeField] private Snake snake;
 
     private void Start()
     {
@@ -54,7 +54,7 @@ public class MultiPlayerUIManager : MonoBehaviour
 
     private void PowerUpUI()
     {
-        if (snake2.GetScoreActive())
+        if (snake.GetScoreActive())
         {
             scoreBoostUI2.SetActive(true);
             speedUI2.SetActive(false);
@@ -65,7 +65,7 @@ public class MultiPlayerUIManager : MonoBehaviour
             scoreBoostUI2.SetActive(false);
         }
 
-        if (snake2.GetShieldActive())
+        if (snake.GetShieldActive())
         {
             shieldUI2.SetActive(true);
             scoreBoostUI2.SetActive(false);
@@ -76,7 +76,7 @@ public class MultiPlayerUIManager : MonoBehaviour
             shieldUI2.SetActive(false);
         }
 
-        if (snake2.GetSpeedActive())
+        if (snake.GetSpeedActive())
         {
             speedUI2.SetActive(true);
             scoreBoostUI2.SetActive(false);

@@ -1811,7 +1811,7 @@ GameObject:
   - component: {fileID: 920470289}
   - component: {fileID: 920470290}
   - component: {fileID: 920470288}
-  - component: {fileID: 920470287}
+  - component: {fileID: 920470292}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Snake1
@@ -1819,28 +1819,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &920470287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920470286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1274e9ff693b56418ca02401125a429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  singlePlayerUIManager: {fileID: 1538281599}
-  multiPlayerGameOver: {fileID: 0}
-  gameOverUI: {fileID: 430569681}
-  snake2: {fileID: 0}
-  isMultiplayer: 0
-  PowerUpUI: {fileID: 1012244269}
-  ScoreUI: {fileID: 2145865385}
-  powerUpSpawner: {fileID: 1068625540}
-  powerUp: {fileID: 1068625539}
-  snakeBodyPrefab: {fileID: 7267383389968443609, guid: 5c346c4f72a21084cb0070a715e15c30, type: 3}
 --- !u!61 &920470288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1955,6 +1933,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &920470292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920470286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f080bb371ca6d4ca44b35f2d7c9738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singlePlayerUIManager: {fileID: 1538281599}
+  multiPlayerUIManager: {fileID: 0}
+  gameOverManager: {fileID: 1538281604}
+  gameOverUI: {fileID: 430569681}
+  isMultiplayer: 0
+  PowerUpUI: {fileID: 1012244269}
+  ScoreUI: {fileID: 2145865385}
+  PowerUpUI2: {fileID: 0}
+  ScoreUI2: {fileID: 0}
+  powerUp: {fileID: 1068625539}
+  snakeBodyPrefab: {fileID: 7267383389968443609, guid: 5c346c4f72a21084cb0070a715e15c30, type: 3}
+  snakeType: 0
 --- !u!1 &1012244269
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,8 +2045,8 @@ GameObject:
   - component: {fileID: 1068625543}
   - component: {fileID: 1068625542}
   - component: {fileID: 1068625541}
-  - component: {fileID: 1068625540}
   - component: {fileID: 1068625544}
+  - component: {fileID: 1068625545}
   m_Layer: 0
   m_Name: PowerUp
   m_TagString: PowerUp
@@ -2052,19 +2054,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1068625540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068625539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05264c886938204e81a3797307db731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnArea: {fileID: 1103302745}
 --- !u!61 &1068625541
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2179,6 +2168,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1068625545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068625539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ba440a031a0224c9ed78470163a3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnArea: {fileID: 1103302745}
 --- !u!1 &1077337459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,8 +2897,8 @@ GameObject:
   - component: {fileID: 1538281602}
   - component: {fileID: 1538281601}
   - component: {fileID: 1538281600}
-  - component: {fileID: 1538281604}
   - component: {fileID: 1538281599}
+  - component: {fileID: 1538281604}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2920,7 +2922,7 @@ MonoBehaviour:
   scoreBoostUI: {fileID: 1698630521}
   speedUI: {fileID: 861497793}
   shieldUI: {fileID: 672749972}
-  snake1: {fileID: 920470287}
+  snake: {fileID: 920470292}
 --- !u!114 &1538281600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3013,11 +3015,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1538281598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56407297eb857c04695920155e0adabd, type: 3}
+  m_Script: {fileID: 11500000, guid: e2506fb034abe4749b15aba0d8d10f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snake: {fileID: 920470292}
   singlePlayerUIManager: {fileID: 1538281599}
-  totalScoreText: {fileID: 704533543}
+  multiPlayerUIManager: {fileID: 0}
+  player1Score: {fileID: 704533543}
+  player2Score: {fileID: 0}
+  player1Win: {fileID: 0}
+  player2Win: {fileID: 0}
   restartButton: {fileID: 1298362186}
   mainmenuButton: {fileID: 683370126}
 --- !u!1 &1558699285

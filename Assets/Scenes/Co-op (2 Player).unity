@@ -1232,7 +1232,7 @@ GameObject:
   - component: {fileID: 546245473}
   - component: {fileID: 546245472}
   m_Layer: 5
-  m_Name: Player1 Text
+  m_Name: Player2 Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1490,7 +1490,7 @@ GameObject:
   - component: {fileID: 698828783}
   - component: {fileID: 698828790}
   - component: {fileID: 698828789}
-  - component: {fileID: 698828788}
+  - component: {fileID: 698828791}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1582,26 +1582,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &698828788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698828780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b74814e0572a140b0f6df353df1348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  singlePlayerUIManager: {fileID: 698828790}
-  multiPlayerUIManager: {fileID: 698828789}
-  player1Score: {fileID: 994769071}
-  player2Score: {fileID: 1466462797}
-  player1Win: {fileID: 1587630262}
-  player2Win: {fileID: 1623659486}
-  restartButton: {fileID: 2112669237}
-  mainmenuButton: {fileID: 672630834}
 --- !u!114 &698828789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1618,7 +1598,7 @@ MonoBehaviour:
   scoreBoostUI2: {fileID: 161113106}
   speedUI2: {fileID: 66186456}
   shieldUI2: {fileID: 1338711493}
-  snake2: {fileID: 1900710828}
+  snake: {fileID: 1900710833}
 --- !u!114 &698828790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1635,7 +1615,28 @@ MonoBehaviour:
   scoreBoostUI: {fileID: 1606503927}
   speedUI: {fileID: 1279982517}
   shieldUI: {fileID: 482390547}
-  snake1: {fileID: 1591547391}
+  snake: {fileID: 1591547396}
+--- !u!114 &698828791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698828780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2506fb034abe4749b15aba0d8d10f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMultiplayer: 1
+  singlePlayerUIManager: {fileID: 698828790}
+  multiPlayerUIManager: {fileID: 698828789}
+  player1Score: {fileID: 994769071}
+  player2Score: {fileID: 1466462797}
+  player1Win: {fileID: 1587630262}
+  player2Win: {fileID: 1623659486}
+  restartButton: {fileID: 2112669237}
+  mainmenuButton: {fileID: 672630834}
 --- !u!1 &720951579
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,8 +2785,8 @@ GameObject:
   - component: {fileID: 1275788639}
   - component: {fileID: 1275788638}
   - component: {fileID: 1275788637}
-  - component: {fileID: 1275788635}
   - component: {fileID: 1275788636}
+  - component: {fileID: 1275788640}
   m_Layer: 0
   m_Name: PowerUp
   m_TagString: PowerUp
@@ -2793,19 +2794,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1275788635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275788634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05264c886938204e81a3797307db731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnArea: {fileID: 388142111}
 --- !u!50 &1275788636
 Rigidbody2D:
   serializedVersion: 4
@@ -2920,6 +2908,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275788640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275788634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ba440a031a0224c9ed78470163a3b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnArea: {fileID: 388142111}
 --- !u!1 &1278586910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3354,7 +3355,7 @@ GameObject:
   - component: {fileID: 1466462798}
   - component: {fileID: 1466462797}
   m_Layer: 5
-  m_Name: Player1 Score
+  m_Name: Player2 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3662,38 +3663,14 @@ GameObject:
   - component: {fileID: 1591547394}
   - component: {fileID: 1591547393}
   - component: {fileID: 1591547392}
-  - component: {fileID: 1591547391}
+  - component: {fileID: 1591547396}
   m_Layer: 0
-  m_Name: Snake
+  m_Name: Snake1
   m_TagString: Snake1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1591547391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591547390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1274e9ff693b56418ca02401125a429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  singlePlayerUIManager: {fileID: 698828790}
-  multiPlayerGameOver: {fileID: 698828788}
-  gameOverUI: {fileID: 1940733136}
-  snake2: {fileID: 1900710828}
-  isMultiplayer: 1
-  PowerUpUI: {fileID: 1944109259}
-  ScoreUI: {fileID: 865819300}
-  PowerUpUI2: {fileID: 243699239}
-  ScoreUI2: {fileID: 41447069}
-  powerUpSpawner: {fileID: 1275788635}
-  powerUp: {fileID: 1275788634}
-  snakeBodyPrefab: {fileID: 7267383389968443609, guid: 5c346c4f72a21084cb0070a715e15c30, type: 3}
 --- !u!61 &1591547392
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3808,6 +3785,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1591547396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591547390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f080bb371ca6d4ca44b35f2d7c9738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singlePlayerUIManager: {fileID: 698828790}
+  multiPlayerUIManager: {fileID: 698828789}
+  gameOverManager: {fileID: 698828791}
+  gameOverUI: {fileID: 1940733136}
+  snake: {fileID: 1900710833}
+  isMultiplayer: 1
+  PowerUpUI: {fileID: 1944109259}
+  ScoreUI: {fileID: 865819300}
+  PowerUpUI2: {fileID: 243699239}
+  ScoreUI2: {fileID: 41447069}
+  powerUp: {fileID: 1275788634}
+  snakeBodyPrefab: {fileID: 7267383389968443609, guid: 5c346c4f72a21084cb0070a715e15c30, type: 3}
+  snakeType: 0
 --- !u!1 &1595034372
 GameObject:
   m_ObjectHideFlags: 0
@@ -4703,7 +4705,7 @@ GameObject:
   - component: {fileID: 1900710831}
   - component: {fileID: 1900710830}
   - component: {fileID: 1900710829}
-  - component: {fileID: 1900710828}
+  - component: {fileID: 1900710833}
   m_Layer: 0
   m_Name: Snake2
   m_TagString: Snake2
@@ -4711,29 +4713,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1900710828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900710827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091e9bf05c000fc46ad31a48afa5cdc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiPlayerUIManager: {fileID: 698828789}
-  multiPlayerGameOver: {fileID: 698828788}
-  gameOverUI: {fileID: 1940733136}
-  snake1: {fileID: 1591547391}
-  PowerUpUI: {fileID: 243699239}
-  ScoreUI: {fileID: 41447069}
-  PowerUpUI2: {fileID: 1944109259}
-  ScoreUI2: {fileID: 865819300}
-  powerUpSpawner: {fileID: 1275788635}
-  powerUp: {fileID: 1275788634}
-  snakeBodyPrefab: {fileID: 7267383389968443609, guid: 9198d29c9f443c74aa0bb00bda38cdf3, type: 3}
 --- !u!61 &1900710829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4848,6 +4827,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900710833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900710827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f080bb371ca6d4ca44b35f2d7c9738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singlePlayerUIManager: {fileID: 698828790}
+  multiPlayerUIManager: {fileID: 698828789}
+  gameOverManager: {fileID: 698828791}
+  gameOverUI: {fileID: 1940733136}
+  snake: {fileID: 1591547396}
+  isMultiplayer: 1
+  PowerUpUI: {fileID: 1944109259}
+  ScoreUI: {fileID: 865819300}
+  PowerUpUI2: {fileID: 243699239}
+  ScoreUI2: {fileID: 41447069}
+  powerUp: {fileID: 1275788634}
+  snakeBodyPrefab: {fileID: 7267383389968443609, guid: 9198d29c9f443c74aa0bb00bda38cdf3, type: 3}
+  snakeType: 1
 --- !u!1 &1940733136
 GameObject:
   m_ObjectHideFlags: 0

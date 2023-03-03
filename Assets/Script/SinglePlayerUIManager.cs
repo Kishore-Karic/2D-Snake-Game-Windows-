@@ -12,7 +12,7 @@ public class SinglePlayerUIManager : MonoBehaviour
     [SerializeField] private GameObject speedUI;
     [SerializeField] private GameObject shieldUI;
 
-    [SerializeField] private Snake1 snake1;
+    [SerializeField] private Snake snake;
 
     private void Start()
     {
@@ -54,7 +54,7 @@ public class SinglePlayerUIManager : MonoBehaviour
 
     private void PowerUpUI()
     {
-        if (snake1.GetScoreActive())
+        if (snake.GetScoreActive())
         {
             scoreBoostUI.SetActive(true);
             speedUI.SetActive(false);
@@ -65,7 +65,7 @@ public class SinglePlayerUIManager : MonoBehaviour
             scoreBoostUI.SetActive(false);
         }
 
-        if (snake1.GetShieldActive())
+        if (snake.GetShieldActive())
         {
             shieldUI.SetActive(true);
             scoreBoostUI.SetActive(false);
@@ -76,7 +76,7 @@ public class SinglePlayerUIManager : MonoBehaviour
             shieldUI.SetActive(false);
         }
         
-        if (snake1.GetSpeedActive())
+        if (snake.GetSpeedActive())
         {
             speedUI.SetActive(true);
             scoreBoostUI.SetActive(false);

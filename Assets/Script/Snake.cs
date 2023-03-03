@@ -7,10 +7,11 @@ public class Snake : MonoBehaviour
     private Vector3 direction;
 
     [SerializeField] private SinglePlayerUIManager singlePlayerUIManager;
-    [SerializeField] private MultiPlayerGameOver multiPlayerGameOver;
+    [SerializeField] private MultiPlayerUIManager multiPlayerUIManager;
+    [SerializeField] private GameOverManager gameOverManager;
     [SerializeField] private GameObject gameOverUI;
 
-    [SerializeField] private Snake2 snake2;
+    [SerializeField] private Snake snake;
     [SerializeField] private bool isMultiplayer;
 
     [SerializeField] private GameObject PowerUpUI;
@@ -19,7 +20,6 @@ public class Snake : MonoBehaviour
     [SerializeField] private GameObject PowerUpUI2;
     [SerializeField] private GameObject ScoreUI2;
 
-    [SerializeField] private PowerUpSpawner powerUpSpawner;
     [SerializeField] private GameObject powerUp;
     private bool speed = false;
     private bool shield = false;
@@ -32,15 +32,26 @@ public class Snake : MonoBehaviour
     float originalSpeed;
     bool[] directionArrays = new bool[4];
 
-    [SerializeField]
+    private enum SnakeType { snake1, snake2 }
+    [SerializeField] private SnakeType snakeType;
 
     private void Start()
     {
         Time.timeScale = 0.2f;
         originalSpeed = 1f;
         moveSpeed = originalSpeed;
-        direction = new Vector3(moveSpeed, 0, 0);
-        directionArrays[3] = true;
+        switch (snakeType)
+        {
+            case SnakeType.snake1:
+                direction = new Vector3(moveSpeed, 0, 0);
+                directionArrays[3] = true;
+                break;
+
+            case SnakeType.snake2:
+                direction = new Vector3(-moveSpeed, 0, 0);
+                directionArrays[2] = true;
+                break;
+        }
         snakeBody = new List<GameObject>();
         snakeBody.Add(this.gameObject);
         StartCoroutine("StartingProtection");
@@ -53,7 +64,16 @@ public class Snake : MonoBehaviour
         shield = true;
         yield return new WaitForSeconds(0.5f);
         shield = false;
-        singlePlayerUIManager.SetGameobjectActive(false);
+        switch (snakeType)
+        {
+            case SnakeType.snake1:
+                singlePlayerUIManager.SetGameobjectActive(false);
+                break;
+
+            case SnakeType.snake2:
+                multiPlayerUIManager.SetGameobjectActive(false);
+                break;
+        }
         powerUp.SetActive(true);
     }
 
@@ -75,25 +95,53 @@ public class Snake : MonoBehaviour
 
     private void Movement()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !directionArrays[1])
+        switch (snakeType)
         {
-            direction = new Vector3(0, moveSpeed, 0);
-            SetDirectionalBool(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && !directionArrays[0])
-        {
-            direction = new Vector3(0, moveSpeed * (-1), 0);
-            SetDirectionalBool(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && !directionArrays[3])
-        {
-            direction = new Vector3(moveSpeed * (-1), 0, 0);
-            SetDirectionalBool(2);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && !directionArrays[2])
-        {
-            direction = new Vector3(moveSpeed, 0, 0);
-            SetDirectionalBool(3);
+            case SnakeType.snake1:
+                if (Input.GetKeyDown(KeyCode.UpArrow) && !directionArrays[1])
+                {
+                    direction = new Vector3(0, moveSpeed, 0);
+                    SetDirectionalBool(0);
+                }
+                else if (Input.GetKeyDown(KeyCode.DownArrow) && !directionArrays[0])
+                {
+                    direction = new Vector3(0, moveSpeed * (-1), 0);
+                    SetDirectionalBool(1);
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftArrow) && !directionArrays[3])
+                {
+                    direction = new Vector3(moveSpeed * (-1), 0, 0);
+                    SetDirectionalBool(2);
+                }
+                else if (Input.GetKeyDown(KeyCode.RightArrow) && !directionArrays[2])
+                {
+                    direction = new Vector3(moveSpeed, 0, 0);
+                    SetDirectionalBool(3);
+                }
+                break;
+
+            case SnakeType.snake2:
+                if (Input.GetKeyDown(KeyCode.W) && !directionArrays[1])
+                {
+                    direction = new Vector3(0, moveSpeed, 0);
+                    SetDirectionalBool(0);
+                }
+                else if (Input.GetKeyDown(KeyCode.S) && !directionArrays[0])
+                {
+                    direction = new Vector3(0, moveSpeed * (-1), 0);
+                    SetDirectionalBool(1);
+                }
+                else if (Input.GetKeyDown(KeyCode.A) && !directionArrays[3])
+                {
+                    direction = new Vector3(moveSpeed * (-1), 0, 0);
+                    SetDirectionalBool(2);
+                }
+                else if (Input.GetKeyDown(KeyCode.D) && !directionArrays[2])
+                {
+                    direction = new Vector3(moveSpeed, 0, 0);
+                    SetDirectionalBool(3);
+                }
+                break;
         }
     }
 
@@ -151,11 +199,29 @@ public class Snake : MonoBehaviour
             Grow();
             if (scoreBooster == true)
             {
-                singlePlayerUIManager.IncreamentScore(30);
+                switch (snakeType)
+                {
+                    case SnakeType.snake1:
+                        singlePlayerUIManager.IncreamentScore(30);
+                        break;
+
+                    case SnakeType.snake2:
+                        multiPlayerUIManager.IncreamentScore(30);
+                        break;
+                }
             }
             else
             {
-                singlePlayerUIManager.IncreamentScore(10);
+                switch (snakeType)
+                {
+                    case SnakeType.snake1:
+                        singlePlayerUIManager.IncreamentScore(10);
+                        break;
+
+                    case SnakeType.snake2:
+                        multiPlayerUIManager.IncreamentScore(10);
+                        break;
+                }
             }
         }
 
@@ -165,7 +231,16 @@ public class Snake : MonoBehaviour
             {
                 SoundManager.Instance.PlayEffect(Sounds.AntiFood);
                 Shrink();
-                singlePlayerUIManager.DecreamentScore(10);
+                switch (snakeType)
+                {
+                    case SnakeType.snake1:
+                        singlePlayerUIManager.DecreamentScore(10);
+                        break;
+
+                    case SnakeType.snake2:
+                        multiPlayerUIManager.DecreamentScore(10);
+                        break;
+                }
             }
             else
             {
@@ -177,7 +252,16 @@ public class Snake : MonoBehaviour
                     ScoreUI.SetActive(false);
                     if (isMultiplayer)
                     {
-                        multiPlayerGameOver.SetSnake2Attacked(true);
+                        switch (snakeType)
+                        {
+                            case SnakeType.snake1:
+                                gameOverManager.SetSnake2Attacked(true);
+                                break;
+
+                            case SnakeType.snake2:
+                                gameOverManager.SetSnake1Attacked(true);
+                                break;
+                        }
                         PowerUpUI2.SetActive(false);
                         ScoreUI2.SetActive(false);
                     }
@@ -187,17 +271,30 @@ public class Snake : MonoBehaviour
 
         if (collision.CompareTag("PowerUp"))
         {
+            int randomNumber = -1;
+            switch (snakeType)
+            {
+                case SnakeType.snake1:
+                    int rand1 = Random.Range(0, 3);
+                    randomNumber = rand1;
+                    break;
+
+                case SnakeType.snake2:
+                    int rand2 = Random.Range(0, 3);
+                    randomNumber = rand2;
+                    break;
+            }
             SoundManager.Instance.PlayEffect(Sounds.PowerUp);
-            if (powerUpSpawner.GetRandomNumber() == 0)
+            if (randomNumber == 0)
             {
                 speed = true;
                 moveSpeed = 1.1f;
             }
-            if (powerUpSpawner.GetRandomNumber() == 1)
+            if (randomNumber == 1)
             {
                 shield = true;
             }
-            if (powerUpSpawner.GetRandomNumber() == 2)
+            if (randomNumber == 2)
             {
                 scoreBooster = true;
             }
@@ -209,24 +306,31 @@ public class Snake : MonoBehaviour
         {
             if (shield == false)
             {
-                Time.timeScale = 0.0f;
-                gameOverUI.SetActive(true);
-                PowerUpUI.SetActive(false);
-                ScoreUI.SetActive(false);
-                if (isMultiplayer)
+                if (isMultiplayer && snake.GetShieldActive() == false)
                 {
-                    multiPlayerGameOver.SetSnake2Attacked(true);
+                    Time.timeScale = 0.0f;
+                    gameOverUI.SetActive(true);
+                    PowerUpUI.SetActive(false);
+                    ScoreUI.SetActive(false);
+                    gameOverManager.SetSnake2Attacked(true);
                     PowerUpUI2.SetActive(false);
                     ScoreUI2.SetActive(false);
+                }
+                else if (!isMultiplayer)
+                {
+                    Time.timeScale = 0.0f;
+                    gameOverUI.SetActive(true);
+                    PowerUpUI.SetActive(false);
+                    ScoreUI.SetActive(false);
                 }
             }
         }
 
         if (collision.CompareTag("SnakeBody2"))
         {
-            if (!snake2.GetShieldActive())
+            if (snakeType == 0 && snake.GetShieldActive() == false || snakeType != 0 && shield == false)
             {
-                multiPlayerGameOver.SetSnake1Attacked(true);
+                gameOverManager.SetSnake1Attacked(true);
                 Time.timeScale = 0.0f;
                 gameOverUI.SetActive(true);
                 PowerUpUI.SetActive(false);

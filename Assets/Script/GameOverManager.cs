@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MultiPlayerGameOver : MonoBehaviour
+public class GameOverManager : MonoBehaviour
 {
+    [SerializeField] private bool isMultiplayer;
+
     private bool snake1Attacked = false;
     private bool snake2Attacked = false;
 
@@ -16,9 +18,10 @@ public class MultiPlayerGameOver : MonoBehaviour
     [SerializeField] private TextMeshProUGUI player1Score;
     [SerializeField] private TextMeshProUGUI player2Score;
 
+
     [SerializeField] private GameObject player1Win;
     [SerializeField] private GameObject player2Win;
-
+    
     [SerializeField] private Button restartButton, mainmenuButton;
 
     private void Awake()
@@ -29,7 +32,7 @@ public class MultiPlayerGameOver : MonoBehaviour
 
     private void Update()
     {
-        RefreshUI();
+        RefreshUI1();
 
         if (snake1Attacked)
         {
@@ -41,10 +44,13 @@ public class MultiPlayerGameOver : MonoBehaviour
         }
     }
 
-    private void RefreshUI()
+    public void RefreshUI1()
     {
         player1Score.text = "" + singlePlayerUIManager.GetScore();
-        player2Score.text = "" + multiPlayerUIManager.GetScore();
+        if (isMultiplayer)
+        {
+            player2Score.text = "" + multiPlayerUIManager.GetScore();
+        }
     }
 
     public void SetSnake1Attacked(bool s1)
