@@ -1,6 +1,6 @@
 # Snake 2D
 A 2D Snake Game with SinglePlayer and Co-op features. <br/>
-[Gameplay Trailer](https://drive.google.com/file/d/1Hwwq3AC0uLl-6il8N11nv0-xONtAa5Ep/view?usp=share_link) <br/>
+[Gameplay Trailer](https://youtu.be/q7YkF-Fdi9w) <br/>
 [Playable Link](https://kishore-karic.itch.io/snake-2d) <br/>
 
 # Game Functionality
